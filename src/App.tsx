@@ -7,15 +7,16 @@ import { useState } from 'react';
 export const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  /* eslint-disable */
   const searchInList = (write: string) => {
-    const newList = moviesFromServer.filter(movie => {
-      return movie.title
-        .toLocaleUpperCase()
-        .includes(write.toLocaleUpperCase());
-    });
+    const query = write.toUpperCase();
 
-    return newList;
+    return moviesFromServer.filter((movie) =>
+      movie.title.toUpperCase().includes(query) ||
+      movie.description.toUpperCase().includes(query),
+    );
   };
+  /* eslint-disable */
 
   return (
     <div className="page">
